@@ -19,7 +19,7 @@ const Hero = () => {
         <p className="mb-8 text-lg md:text-1xl">
             Supporting single mothers and young girls to thrive with dignity and hope.
         </p>
-        <button className="px-6 py-3 font-semibold text-black transition bg-white rounded-lg hover:bg-pink-600 hover:text-white">
+        <button className="px-6 py-3 font-semibold text-black transition bg-white border-white rounded-lg hover:bg-black hover:text-white">
           Get Started
         </button>
       </div>
