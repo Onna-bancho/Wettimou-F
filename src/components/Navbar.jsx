@@ -1,7 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hoverMenu, setHoverMenu] = useState(false);
+
+  useEffect(() => {
+    // Detect any scroll and immediately update header
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 5;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { name: "Home", href: "#home" },
@@ -13,8 +28,8 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-black/80 backdrop-blur">
-      <nav className="flex items-center justify-between px-6 py-4 mx-auto max-w-7xl">
+    <header className={`fixed top-0 left-0 z-50 w-full transition-all duration-150 ${scrolled || hoverMenu ? 'bg-black/95 backdrop-blur-lg shadow-lg' : 'bg-black/70 backdrop-blur'}`}>
+      <nav className={`flex items-center justify-between px-6 mx-auto max-w-7xl transition-all duration-150 ${scrolled || hoverMenu ? 'py-2' : 'py-4'}`}>
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
           <img src="/images/Wettimou_logo.jpeg" alt="Wettimou Logo" className="rounded-full h-7" />
@@ -27,7 +42,7 @@ const Navbar = () => {
             <li key={link.name}>
               <a
                 href={link.href}
-                className="transition hover:text-pink-500"
+                className="transition-colors duration-150 hover:text-pink-500 active:text-pink-600"
               >
                 {link.name}
               </a>
@@ -37,7 +52,7 @@ const Navbar = () => {
 
         {/* Mobile button */}
         <button
-          className="text-2xl md:hidden"
+          className="text-2xl transition-colors duration-150 md:hidden hover:text-pink-500 active:text-pink-600"
           onClick={() => setOpen(!open)}
         >
           ☰
@@ -46,13 +61,17 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {open && (
-        <ul className="px-6 pb-6 space-y-4 bg-black md:hidden">
+        <ul 
+          className="w-full px-6 pb-6 space-y-2 bg-black/95 md:hidden"
+          onMouseEnter={() => setHoverMenu(true)}
+          onMouseLeave={() => setHoverMenu(false)}
+        >
           {links.map(link => (
             <li key={link.name}>
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block py-2 border-b border-white/10 hover:text-pink-500"
+                className="block w-full px-4 py-3 text-white transition-all duration-150 rounded-lg hover:bg-pink-500/20 hover:text-pink-400 active:bg-pink-500/40 active:text-pink-300"
               >
                 {link.name}
               </a>
