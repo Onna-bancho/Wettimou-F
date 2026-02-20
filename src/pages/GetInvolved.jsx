@@ -1,6 +1,13 @@
 import React from "react";
 
 const GetInvolved = () => {
+  // Encode the subject and body so it works in the URL
+  const gmailLink = `https://mail.google.com/mail/?view=cm&to=wettimou@gmail.com&su=${encodeURIComponent(
+    "Get Involved"
+  )}&body=${encodeURIComponent(
+    "Hi Wettimou,\n\nI want to learn more about how to get involved."
+  )}`;
+
   return (
     <section
       id="get-involved"
@@ -30,7 +37,9 @@ const GetInvolved = () => {
         </p>
 
         <a
-          href="mailto:wettimou@gmail.com"
+          href={gmailLink}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block px-6 py-3 mt-6 text-sm font-semibold transition-all duration-300 bg-pink-600 rounded-lg sm:px-8 sm:py-3 sm:text-base md:px-8 md:py-3 md:text-lg hover:bg-pink-700 hover:scale-105 active:scale-95"
         >
           Email Us
