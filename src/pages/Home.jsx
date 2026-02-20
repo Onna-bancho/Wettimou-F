@@ -4,8 +4,8 @@ import Hero from "../components/Hero";
 import About from "../pages/About";
 import WhatWeDo from "../pages/WhatWeDo";
 import GetInvolved from "../pages/GetInvolved";
-import News from "./News";
-import Contact from "./Contact";
+import News from "../pages/News";
+import Contact from "../pages/Contact";
 
 const Home = () => {
   return (

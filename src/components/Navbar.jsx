@@ -32,7 +32,7 @@ const Navbar = () => {
       <nav className={`flex items-center justify-between px-6 mx-auto max-w-7xl transition-all duration-150 ${scrolled || hoverMenu ? 'py-2' : 'py-4'}`}>
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
-          <img src="/images/Wettimou_logo.jpeg" alt="Wettimou Logo" className="rounded-full h-7" />
+          <img src="/images/Wettimou_logo.jpeg" alt="Wettimou Logo" className="h-6 rounded-full" />
           <span className="text-lg font-bold text-white-600">Wettimou</span>
         </a>
 

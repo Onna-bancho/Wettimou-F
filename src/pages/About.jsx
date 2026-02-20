@@ -22,7 +22,7 @@ const About = () => {
 
             Founded in 2019, Wettimou is a foundation dedicated to single mothers(single mum, widow mum) and young girls — women who often face life’s toughest challenges with little or no support.
             Built on compassion backed by action, Wettimou—meaning “Help Me”—amplifies the voices of these women.
-            We exist to be that helping hand, and voice of hope, a safe place where they're are not judged, but rather understood and empowered.
+            We exist to be that helping hand, and voice of hope, a safe place where they're not judged, but rather understood and empowered.
           </p>
           <p>
             We know the struggle firsthand — and that’s what drives us. Society may point fingers, but Wettimou extends a hand.

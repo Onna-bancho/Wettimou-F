@@ -27,11 +27,9 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-20 max-w-3xl text-white">
         <h1 className="mb-6 text-4xl font-bold text-pink-600 md:text-5xl">
-          Support & Empowerment for Young Girls & Single Mothers
+          Support & Empowerment for Young Girls & Single Mothers 
         </h1>
-        <p className="mb-8 text-lg md:text-1xl">
-            Supporting single mothers and young girls to thrive with dignity and hope.
-        </p>
+      
         <a
           href="#get-involved"
           onMouseDown={handlePressStart}
