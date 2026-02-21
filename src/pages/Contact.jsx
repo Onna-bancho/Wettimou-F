@@ -25,7 +25,7 @@ const ContactFooter = () => {
         <div>
           <h2 className="mb-2 text-2xl font-bold text-pink-600">Wettimou</h2>
           <p className="text-sm text-gray-300">
-            Supporting single mothers and young girls to thrive with dignity and hope.
+            Support & Empowerment for Young Girls & Single Mothers
           </p>
         </div>
 
