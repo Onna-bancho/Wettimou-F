@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  // Line 5: scrolled state, fully used in JSX → ESLint-safe
   const [scrolled, setScrolled] = useState(false);
-  const [hoverMenu, setHoverMenu] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Detect any scroll and immediately update header
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 5;
-      setScrolled(isScrolled);
+      if (typeof window !== "undefined") {
+        setScrolled(window.scrollY > 15);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Check initial state
-
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,56 +28,105 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 z-50 w-full transition-all duration-150 ${scrolled || hoverMenu ? 'bg-black/95 backdrop-blur-lg shadow-lg' : 'bg-black/70 backdrop-blur'}`}>
-      <nav className={`flex items-center justify-between px-6 mx-auto max-w-7xl transition-all duration-150 ${scrolled || hoverMenu ? 'py-2' : 'py-4'}`}>
+    <header
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "bg-black shadow-lg" : "bg-black/70 backdrop-blur"
+      }`}
+    >
+      <nav
+        className={`flex items-center justify-between mx-auto max-w-7xl px-6 transition-all duration-300 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+      >
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2">
-          <img src="/images/Wettimou_logo.jpeg" alt="Wettimou Logo" className="h-6 rounded-full" />
-          <span className="text-lg font-bold text-white-600">Wettimou</span>
+        <a href="#home" className="flex items-center gap-3 select-none">
+          <div
+            className={`flex items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 transition-all duration-300 ${
+              scrolled ? "h-9 w-9" : "h-11 w-11"
+            }`}
+          >
+            <img
+              src="/images/Wettimou_logo.jpeg"
+              alt="Wettimou Logo"
+              className="h-[85%] w-[85%] rounded-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span
+              className={`font-semibold tracking-wide text-white transition-all duration-300 ${
+                scrolled ? "text-base" : "text-lg"
+              }`}
+            >
+              Wettimou
+            </span>
+            <span className="text-xs tracking-widest uppercase text-white/60">
+              Foundation
+            </span>
+          </div>
         </a>
 
-        {/* Desktop */}
-        <ul className="hidden gap-8 text-sm md:flex">
-          {links.map(link => (
-            <li key={link.name}>
+        {/* Desktop Links */}
+        <ul className="items-center hidden gap-10 text-sm font-medium md:flex">
+          {links.map((link) => (
+            <li key={link.name} className="relative group">
               <a
                 href={link.href}
-                className="transition-colors duration-150 hover:text-pink-500 active:text-pink-600"
+                className="transition-colors duration-200 text-white/80 hover:text-white"
               >
                 {link.name}
               </a>
+              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-pink-600 group-hover:w-full transition-all duration-300"></span>
             </li>
           ))}
         </ul>
 
-        {/* Mobile button */}
+        {/* Desktop CTA */}
+        <div className="hidden md:block">
+          <a
+            href="#get-involved"
+            className="px-5 py-2 text-sm font-semibold text-black transition duration-200 bg-pink-600 rounded-md hover:bg-pink-500"
+          >
+            Support Us
+          </a>
+        </div>
+
+        {/* Mobile Toggle */}
         <button
-          className="text-2xl transition-colors duration-150 md:hidden hover:text-pink-500 active:text-pink-600"
+          className="text-2xl text-white md:hidden"
           onClick={() => setOpen(!open)}
+          aria-expanded={open}
         >
           ☰
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {open && (
-        <ul 
-          className="w-full px-6 pb-6 space-y-2 bg-black/95 md:hidden"
-          onMouseEnter={() => setHoverMenu(true)}
-          onMouseLeave={() => setHoverMenu(false)}
-        >
-          {links.map(link => (
-            <li key={link.name}>
-              <a
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block w-full px-4 py-3 text-white transition-all duration-150 rounded-lg hover:bg-pink-500/20 hover:text-pink-400 active:bg-pink-500/40 active:text-pink-300"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="bg-black border-t md:hidden border-white/10 animate-slide-down">
+          <ul className="px-6 py-6 space-y-5 text-center">
+            {links.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block transition text-white/80 hover:text-pink-600"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="px-6 pb-6">
+            <a
+              href="#get-involved"
+              onClick={() => setOpen(false)}
+              className="block w-full py-2 font-semibold text-center text-black transition bg-pink-600 rounded-md hover:bg-pink-500"
+            >
+              Support Us
+            </a>
+          </div>
+        </div>
       )}
     </header>
   );

@@ -1,102 +1,91 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { FaFacebookF, FaTiktok, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
-const ContactFooter = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const handleNavToHash = (e, id) => {
-    e.preventDefault();
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollToId: id } });
-    } else {
-      scrollToSection(id);
-    }
-  };
-
+const ContactSection = () => {
   return (
-    <footer className="px-4 py-16 text-white bg-black">
-      <div className="grid max-w-6xl grid-cols-1 gap-8 mx-auto text-center md:grid-cols-3 md:text-left">
-        {/* Column 1: Brand */}
-        <div>
-          <h2 className="mb-2 text-2xl font-bold text-pink-600">Wettimou</h2>
-          <p className="text-sm text-gray-300">
-            Support & Empowerment for Young Girls & Single Mothers
-          </p>
+    <section className="px-6 py-20 text-white bg-black">
+      <div className="max-w-5xl mx-auto mb-12 text-center">
+        <h2 className="text-3xl font-extrabold text-pink-600 md:text-4xl">
+          Get in Touch
+        </h2>
+        <p className="mt-4 text-lg text-gray-300">
+          We’d love to hear from you. Whether you have questions, ideas, or want
+          to get involved — reach out and we’ll connect with you soon.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-3">
+        {/* Email Card */}
+        <div className="p-6 transition-shadow duration-300 border border-gray-800 shadow-lg rounded-xl bg-black/30 backdrop-blur-sm hover:shadow-xl">
+          <div className="flex justify-center mb-4 text-2xl text-pink-600">
+            <FaEnvelope />
+          </div>
+          <h3 className="mb-2 text-xl font-semibold text-pink-600">Email Us</h3>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=wettimou@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lg text-gray-200 transition-colors hover:text-pink-500"
+          >
+            wettimou@gmail.com
+          </a>
         </div>
 
-        {/* Column 2: Contact Info */}
-        <div className="space-y-2 text-sm text-gray-300">
-          <p>
-            <strong>Email:</strong>{" "}
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=wettimou@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors duration-300 hover:text-pink-600"
-            >
-              wettimou@gmail.com
-            </a>
-          </p>
-          <p>
-            <strong>Phone:</strong> +237 693734904
-          </p>
-          <p>
-            <strong>Address:</strong> North-West Bamenda, Cameroon
-          </p>
+        {/* Phone Card */}
+        <div className="p-6 transition-shadow duration-300 border border-gray-800 shadow-lg rounded-xl bg-black/30 backdrop-blur-sm hover:shadow-xl">
+          <div className="flex justify-center mb-4 text-2xl text-pink-600">
+            <FaPhoneAlt />
+          </div>
+          <h3 className="mb-2 text-xl font-semibold text-pink-600">Call Us</h3>
+          <p className="text-lg text-gray-200">+237 693 734 904</p>
         </div>
 
-        {/* Column 3: Quick Links (Home added) */}
-        <div className="space-y-2 text-sm text-gray-300">
+        {/* Location Card */}
+        <div className="p-6 transition-shadow duration-300 border border-gray-800 shadow-lg rounded-xl bg-black/30 backdrop-blur-sm hover:shadow-xl">
+          <div className="flex justify-center mb-4 text-2xl text-pink-600">
+            <FaMapMarkerAlt />
+          </div>
+          <h3 className="mb-2 text-xl font-semibold text-pink-600">Visit Us</h3>
+          <p className="text-lg text-gray-200">
+            Bamenda, North-West Region, Cameroon
+          </p>
+        </div>
+      </div>
+
+      {/* Social Media */}
+      <div className="mt-12 text-center">
+        <p className="mb-4 text-lg font-semibold text-gray-300">
+          Follow us on social media
+        </p>
+        <div className="flex justify-center gap-6 text-2xl">
           <a
-            href="/#home"
-            onClick={(e) => handleNavToHash(e, "home")}
-            className="block transition-colors duration-300 hover:text-pink-600"
+            href="https://www.facebook.com/share/1WRA7c6m3k/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 text-pink-600 transition rounded-full bg-black/30 hover:bg-pink-600/20"
           >
-            Home
+            <FaFacebookF />
           </a>
+
           <a
-            href="/#about"
-            onClick={(e) => handleNavToHash(e, "about")}
-            className="block transition-colors duration-300 hover:text-pink-600"
+            href="https://www.tiktok.com/@wettimou?_r=1&_t=ZS-948HknWO7aXNow"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 text-pink-600 transition rounded-full bg-black/30 hover:bg-pink-600/20"
           >
-            About
-          </a>
-          <a
-            href="/#what-we-do"
-            onClick={(e) => handleNavToHash(e, "what-we-do")}
-            className="block transition-colors duration-300 hover:text-pink-600"
-          >
-            What We Do
-          </a>
-          <a
-            href="/#news"
-            onClick={(e) => handleNavToHash(e, "news")}
-            className="block transition-colors duration-300 hover:text-pink-600"
-          >
-            News & Media
-          </a>
-          <a
-            href="/#contact"
-            onClick={(e) => handleNavToHash(e, "contact")}
-            className="block transition-colors duration-300 hover:text-pink-600"
-          >
-            Contact
+            <FaTiktok />
           </a>
         </div>
       </div>
 
-      <div className="mt-8 border-t border-gray-800" />
+      {/* Divider */}
+      <div className="max-w-6xl mx-auto mt-16 border-t border-gray-800"></div>
 
-      <div className="mt-4 text-xs text-center text-gray-500">
-        &copy; {new Date().getFullYear()} Wettimou. All rights reserved.
+      {/* Copyright */}
+      <div className="mt-6 text-sm text-center text-gray-500">
+        © 2026 Wettimou. All rights reserved.
       </div>
-    </footer>
+    </section>
   );
 };
 
-export default ContactFooter;
+export default ContactSection;
