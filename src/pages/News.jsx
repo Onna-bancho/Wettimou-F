@@ -25,7 +25,7 @@ const newsItems = [
 const News = () => {
   return (
     <section className="w-full px-4 py-20 text-center bg-gray-50">
-      <h2 className="mb-8 text-3xl font-bold text-gray-900 sm:text-4xl">
+      <h2 className="mb-8 text-3xl font-bold text-pink-600 sm:text-4xl">
         News & Media
       </h2>
 
